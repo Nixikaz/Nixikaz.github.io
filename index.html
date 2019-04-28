@@ -5,6 +5,8 @@
     <title>Rock Paper Scissors</title>
     <style>
       body {
+        background: #154355;
+        color: #ddd;
         font-size: 2rem;
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         display: grid;
@@ -25,7 +27,11 @@
       }
       #roundresults {
         grid-area: results;
-        justify-self: center;
+        text-align: center;
+        margin: 1rem;
+      }
+      #roundresults img {
+        width: 35px;
       }
       #scorekeeper {
         grid-area: score;
@@ -54,10 +60,11 @@
       }
       #resetbutton {
         grid-area: reset;
-        border: 2px solid black;
+        width: 20rem;
+        border: 2px solid #d27f2c;
         border-radius: 2rem;
         margin: auto;
-        color: darkgray;
+        color: #ddd;
         font-size: 3rem;
       }
       .playbuttons {
@@ -69,12 +76,11 @@
         height: 10rem;
         width: 10rem;
         outline: none;
-        transition: all 0.5s ease;
+        transition: all 0.3s ease;
         border-radius: 50%;
       }
       .playbuttons:hover {
         transform: translateY(-0.5rem);
-        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
       }
     </style>
   </head>
@@ -90,32 +96,40 @@
       }
 
       function playRound(playerSelection, computerSelection) {
+        let computerSelectionResults =
+          'Computer chose ' + '<img src="' + computerSelection + '.png" alt="' + computerSelection + '"/>. <br />';
         if (playerSelection === computerSelection) {
-          return (document.getElementById('roundresults').innerHTML = 'Tie! Try again!');
+          return (document.getElementById('roundresults').innerHTML = computerSelectionResults + 'Tie! Try again!');
         }
         if (playerSelection === 'rock' && computerSelection == 'paper') {
           compScore++;
-          return (document.getElementById('roundresults').innerHTML = 'You Lose! Paper covers Rock!');
+          return (document.getElementById('roundresults').innerHTML =
+            computerSelectionResults + 'You Lose! Paper covers Rock!');
         }
         if (playerSelection === 'rock' && computerSelection == 'scissors') {
           playerScore++;
-          return (document.getElementById('roundresults').innerHTML = 'You Win! Rock crushes Scissors!');
+          return (document.getElementById('roundresults').innerHTML =
+            computerSelectionResults + 'You Win! Rock crushes Scissors!');
         }
         if (playerSelection === 'paper' && computerSelection == 'rock') {
           playerScore++;
-          return (document.getElementById('roundresults').innerHTML = 'Paper wraps Rock! You win!');
+          return (document.getElementById('roundresults').innerHTML =
+            computerSelectionResults + 'Paper wraps Rock! You win!');
         }
         if (playerSelection === 'paper' && computerSelection == 'scissors') {
           compScore++;
-          return (document.getElementById('roundresults').innerHTML = 'Scissors cuts Paper! You lost!');
+          return (document.getElementById('roundresults').innerHTML =
+            computerSelectionResults + 'Scissors cuts Paper! You lost!');
         }
         if (playerSelection === 'scissors' && computerSelection == 'rock') {
           compScore++;
-          return (document.getElementById('roundresults').innerHTML = 'You Lose! Rock crushes Scissors!');
+          return (document.getElementById('roundresults').innerHTML =
+            computerSelectionResults + 'You Lose! Rock crushes Scissors!');
         }
         if (playerSelection === 'scissors' && computerSelection == 'paper') {
           playerScore++;
-          return (document.getElementById('roundresults').innerHTML = 'You Win! Scissors cuts Paper!');
+          return (document.getElementById('roundresults').innerHTML =
+            computerSelectionResults + 'You Win! Scissors cuts Paper!');
         }
       }
       function winCondition() {
